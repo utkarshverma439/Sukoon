@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="crisis-container">
+    <div class="crisis-card">
+        <div class="crisis-header">
+            <h1>🚨 Immediate Support Needed</h1>
+            <p class="crisis-subtitle">Your safety is our priority</p>
+        </div>
+        
+        <div class="crisis-content">
+            <div class="emergency-section">
+                <h2>If you're in immediate danger:</h2>
+                <div class="emergency-buttons">
+                    <a href="tel:112" class="btn btn-emergency">Call 112 (Emergency)</a>
+                    <a href="tel:102" class="btn btn-emergency">Call 102 (Ambulance)</a>
+                </div>
+            </div>
+            
+            <div class="helpline-section">
+                <h2>Crisis Helplines (India):</h2>
+                <div class="helpline-list">
+                    <div class="helpline-item">
+                        <strong>Vandrevala Foundation</strong>
+                        <a href="tel:9999666555" class="helpline-number">9999 666 555</a>
+                        <span class="helpline-hours">24/7</span>
+                    </div>
+                    <div class="helpline-item">
+                        <strong>AASRA</strong>
+                        <a href="tel:9820466726" class="helpline-number">9820 466 726</a>
+                        <span class="helpline-hours">24/7</span>
+                    </div>
+                    <div class="helpline-item">
+                        <strong>Sneha Foundation</strong>
+                        <a href="tel:04424640050" class="helpline-number">044 2464 0050</a>
+                        <span class="helpline-hours">24/7</span>
+                    </div>
+                    <div class="helpline-item">
+                        <strong>Sumaitri</strong>
+                        <a href="tel:01123389090" class="helpline-number">011 2338 9090</a>
+                        <span class="helpline-hours">24/7</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="safety-plan">
+                <h2>Right Now:</h2>
+                <ul>
+                    <li>Stay with someone you trust</li>
+                    <li>Remove any means of self-harm from your immediate area</li>
+                    <li>Call one of the helplines above</li>
+                    <li>Go to the nearest hospital emergency room</li>
+                </ul>
+            </div>
+            
+            <div class="continue-section">
+                <p>When you're ready and safe, you can continue to chat with our support bots, but please prioritize getting professional help.</p>
+                <a href="/chat" class="btn btn-secondary">Continue to Chat (when safe)</a>
+            </div>
+        </div>
+        
+        <div class="crisis-footer">
+            <p><strong>Remember:</strong> You are not alone. Help is available. Your life has value.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

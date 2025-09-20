@@ -1,0 +1,9 @@
+secrets.toml
+.env
+venv/
+*.pyc
+__pycache__/
+sukoon.db
+*.sqlite
+.DS_Store
+node_modules/

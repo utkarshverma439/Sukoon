@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="assessment-container">
+    <div class="assessment-card">
+        <h1>Quick Check-in</h1>
+        <p class="subtitle">Help us understand how you're feeling (this is not a medical diagnosis)</p>
+        
+        <form method="post" action="/assessment" class="assessment-form">
+            <div class="question-group">
+                <label>Over the last 2 weeks, how often have you felt down or depressed?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="mood" value="not_at_all" required> Not at all</label>
+                    <label><input type="radio" name="mood" value="several_days"> Several days</label>
+                    <label><input type="radio" name="mood" value="more_than_half"> More than half the days</label>
+                    <label><input type="radio" name="mood" value="nearly_every_day"> Nearly every day</label>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <label>Over the last 2 weeks, how often have you felt anxious or worried?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="anxiety" value="not_at_all" required> Not at all</label>
+                    <label><input type="radio" name="anxiety" value="several_days"> Several days</label>
+                    <label><input type="radio" name="anxiety" value="more_than_half"> More than half the days</label>
+                    <label><input type="radio" name="anxiety" value="nearly_every_day"> Nearly every day</label>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <label>How is your sleep recently?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="sleep" value="very_good" required> Very good</label>
+                    <label><input type="radio" name="sleep" value="good"> Good</label>
+                    <label><input type="radio" name="sleep" value="poor"> Poor</label>
+                    <label><input type="radio" name="sleep" value="very_poor"> Very poor</label>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <label>Have you lost interest in activities you usually enjoy?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="interest" value="not_at_all" required> Not at all</label>
+                    <label><input type="radio" name="interest" value="several_days"> Several days</label>
+                    <label><input type="radio" name="interest" value="more_than_half"> More than half the days</label>
+                    <label><input type="radio" name="interest" value="nearly_every_day"> Nearly every day</label>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <label>Do you have someone to talk to when stressed?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="support" value="always" required> Always</label>
+                    <label><input type="radio" name="support" value="sometimes"> Sometimes</label>
+                    <label><input type="radio" name="support" value="rarely"> Rarely</label>
+                    <label><input type="radio" name="support" value="never"> Never</label>
+                </div>
+            </div>
+            
+            <div class="question-group crisis-question">
+                <label>Any current thoughts of harming yourself or ending your life?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="self_harm" value="not_at_all" required> Not at all</label>
+                    <label><input type="radio" name="self_harm" value="several_days"> Several days</label>
+                    <label><input type="radio" name="self_harm" value="more_than_half"> More than half the days</label>
+                    <label><input type="radio" name="self_harm" value="nearly_every_day"> Nearly every day</label>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Continue to Chat</button>
+        </form>
+        
+        <div class="disclaimer">
+            <p><small>This assessment is for supportive purposes only and is not a medical diagnosis. If you're experiencing a crisis, please contact emergency services immediately.</small></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sukoon - Login</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <!-- Animated background -->
+        <div class="bg-animation">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
+        </div>
+
+        <!-- Horizontal lines decoration -->
+        <div class="horizontal-lines">
+            <div class="line line-1"></div>
+            <div class="line line-2"></div>
+            <div class="line line-3"></div>
+            <div class="line line-4"></div>
+            <div class="line line-5"></div>
+        </div>
+
+        <!-- Main login card -->
+        <div class="login-card">
+            <div class="card-header">
+                <h1 class="brand-title">Sukoon</h1>
+                <p class="brand-subtitle">Your mental wellness companion</p>
+            </div>
+
+            {% if error %}
+            <div class="error-message">
+                <span class="error-icon">⚠</span>
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form method="post" action="/login" class="login-form">
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <input type="email" id="username" name="username" required>
+                        <label for="username">Email</label>
+                        <div class="input-line"></div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <input type="password" id="password" name="password" required>
+                        <label for="password">Password</label>
+                        <div class="input-line"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <span class="btn-text">Login</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </form>
+
+            <div class="auth-links">
+                <p>Don't have an account? <a href="/signup" class="signup-link">Sign up here</a></p>
+            </div>
+
+            <div class="disclaimer">
+                <p>Sukoon is a supportive tool — not a medical diagnosis.<br>For emergencies call local emergency
+                    services.</p>
+            </div>
+        </div>
+
+        <!-- Side decorative elements -->
+        <div class="side-decoration left">
+            <div class="deco-line"></div>
+            <div class="deco-line"></div>
+            <div class="deco-line"></div>
+        </div>
+        <div class="side-decoration right">
+            <div class="deco-line"></div>
+            <div class="deco-line"></div>
+            <div class="deco-line"></div>
+        </div>
+    </div>
+
+    <script src="/static/js/login.js"></script>
+</body>
+
+</html>

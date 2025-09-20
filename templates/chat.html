@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="chat-container">
+    <div class="chat-sidebar">
+        <div class="user-info">
+            <div class="logo-title-container">
+                <img src="/static/images/sukoon.png" alt="Sukoon" class="logo-image">
+                <h2>Sukoon</h2>
+            </div>
+            <p class="app-subtitle">Mental Wellness App</p>
+        </div>
+        
+        <div class="bot-tabs">
+            <div class="bot-tab active" data-bot="aarav">
+                <img src="/static/images/aarav.png" alt="Aarav" class="bot-avatar">
+                <div class="bot-info">
+                    <h4>Aarav</h4>
+                    <p>Calm & Logical Support</p>
+                </div>
+            </div>
+            
+            <div class="bot-tab" data-bot="meera">
+                <img src="/static/images/meera.png" alt="Meera" class="bot-avatar">
+                <div class="bot-info">
+                    <h4>Meera</h4>
+                    <p>Warm & Empathetic Support</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-actions">
+            <button id="clear-chat-btn" class="btn btn-outline">🗑️ Clear Chat</button>
+        </div>
+    </div>
+    
+    <div class="chat-main">
+        <div class="chat-header">
+            <div class="current-bot-info">
+                <img id="current-bot-avatar" src="/static/images/aarav.png" alt="Current Bot">
+                <div>
+                    <h3 id="current-bot-name">Aarav</h3>
+                    <p id="current-bot-desc">Calm & Logical Support</p>
+                </div>
+            </div>
+            <div class="user-header-info">
+                <span class="welcome-user">Welcome, {{ user.username.split('@')[0] }}</span>
+                <div class="user-header-actions">
+                    <button id="clear-all-btn" class="btn btn-danger btn-sm">Clear All</button>
+                    <a href="/logout" class="btn btn-secondary btn-sm">Logout</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-messages" id="chat-messages">
+            <div class="welcome-message">
+                <p>Hi! I'm here to listen and support you. How are you feeling today?</p>
+            </div>
+            
+            <!-- Floating Action Buttons -->
+            <div class="floating-action-buttons">
+                <button class="floating-btn" title="Help"><i class="icon">❓</i></button>
+                <button class="floating-btn" title="Settings"><i class="icon">⚙️</i></button>
+                <button class="floating-btn" title="Resources"><i class="icon">📚</i></button>
+            </div>
+        </div>
+        
+        <div class="chat-input">
+            <div class="input-group">
+                <div class="input-left-icon">
+                    <div class="big-emoji-icon" id="emoji-btn" title="Add Emoji">😊</div>
+                </div>
+                <textarea id="message-input" placeholder="Type your message..." maxlength="500" rows="1"></textarea>
+                <div class="input-right-icon">
+                    <div class="big-voice-icon" id="voice-btn" title="Voice Recognition">🎙️</div>
+                </div>
+                <button id="send-btn" class="btn btn-primary">➤</button>
+                <div class="emoji-picker" id="emoji-picker" style="display: none;">
+                    <div class="emoji-grid">
+                        <span class="emoji-item" data-emoji="😊">😊</span>
+                        <span class="emoji-item" data-emoji="😢">😢</span>
+                        <span class="emoji-item" data-emoji="😰">😰</span>
+                        <span class="emoji-item" data-emoji="😔">😔</span>
+                        <span class="emoji-item" data-emoji="😌">😌</span>
+                        <span class="emoji-item" data-emoji="😤">😤</span>
+                        <span class="emoji-item" data-emoji="😓">😓</span>
+                        <span class="emoji-item" data-emoji="🤗">🤗</span>
+                        <span class="emoji-item" data-emoji="🙏">🙏</span>
+                        <span class="emoji-item" data-emoji="💪">💪</span>
+                        <span class="emoji-item" data-emoji="❤️">❤️</span>
+                        <span class="emoji-item" data-emoji="🌟">🌟</span>
+                        <span class="emoji-item" data-emoji="🌈">🌈</span>
+                        <span class="emoji-item" data-emoji="☀️">☀️</span>
+                        <span class="emoji-item" data-emoji="🌙">🌙</span>
+                        <span class="emoji-item" data-emoji="⭐">⭐</span>
+                        <span class="emoji-item" data-emoji="💭">💭</span>
+                        <span class="emoji-item" data-emoji="💡">💡</span>
+                        <span class="emoji-item" data-emoji="🎯">🎯</span>
+                        <span class="emoji-item" data-emoji="🚀">🚀</span>
+                    </div>
+                </div>
+            </div>
+            <div class="voice-status" id="voice-status" style="display: none;">
+                <div class="voice-indicator">
+                    <div class="voice-wave"></div>
+                    <div class="voice-wave"></div>
+                    <div class="voice-wave"></div>
+                </div>
+                <span class="voice-text">Listening...</span>
+                <button id="stop-voice-btn" class="btn btn-sm btn-secondary">Stop</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Voice Recognition Modal -->
+<div id="voice-modal" class="modal">
+    <div class="modal-content voice-modal-content">
+        <div class="voice-recognition-status">
+            <div class="voice-indicator-large">
+                <div class="voice-wave-large"></div>
+                <div class="voice-wave-large"></div>
+                <div class="voice-wave-large"></div>
+                <div class="voice-wave-large"></div>
+                <div class="voice-wave-large"></div>
+            </div>
+            <h3>Voice Recognition</h3>
+            <p id="voice-status-text">Click the microphone to start speaking...</p>
+            <div class="voice-transcript" id="voice-transcript"></div>
+        </div>
+        
+        <div class="voice-controls">
+            <button id="start-voice-btn" class="btn btn-primary">🎙️ Start Recording</button>
+            <button id="stop-voice-recording" class="btn btn-secondary" style="display: none;">⏹️ Stop</button>
+            <button id="send-voice-text" class="btn btn-success" style="display: none;">📤 Send</button>
+            <button id="close-voice-modal" class="btn btn-outline">❌ Close</button>
+        </div>
+        
+        <div class="voice-fallback">
+            <p><small>Voice recognition not supported? Type your message:</small></p>
+            <input type="text" id="voice-fallback-input" placeholder="Type your message here...">
+            <button id="send-fallback-btn" class="btn btn-primary btn-sm">Send</button>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/chat.js"></script>
+{% endblock %}
