@@ -77,7 +77,7 @@ A comprehensive, dark-mode mental wellness web application designed specifically
 
 1. **Clone the repository:**
 ```bash
-git clone <repository-url>
+git clone https://github.com/utkarshverma439/Sukoon.git
 cd sukoon
 ```
 
